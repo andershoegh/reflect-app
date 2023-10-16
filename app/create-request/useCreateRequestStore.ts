@@ -1,4 +1,5 @@
 import { create } from "zustand";
+import { devtools } from "zustand/middleware";
 import { Request, RequestItem } from "./types";
 
 interface CreateRequestState {
@@ -6,29 +7,25 @@ interface CreateRequestState {
     title: Request["title"];
     addRequestItem: (newItem: RequestItem) => void;
     updateRequestContent: (updatedContent: RequestItem[]) => void;
+    updateRequestItem: (updatedItem: RequestItem) => void;
 }
 
-export const useCreateRequestStore = create<CreateRequestState>((set) => ({
-    title: "Mock request",
-    content: [
-        {
-            type: "textarea",
-            id: "2",
-            description: "Provide your experience with A",
+export const useCreateRequestStore = create<CreateRequestState>()(
+    devtools((set) => ({
+        title: "Mock request",
+        content: [],
+        updateRequestContent: (updatedContent) =>
+            set(() => ({ content: updatedContent })),
+        addRequestItem: (newItem) =>
+            set(({ content }) => ({ content: [...content, newItem] })),
+        updateRequestItem: (updatedItem) => {
+            set(({ content }) => ({
+                content: content.map((item) =>
+                    item.id === updatedItem.id
+                        ? { ...item, ...updatedItem }
+                        : item,
+                ),
+            }));
         },
-        {
-            type: "slider",
-
-            id: "4",
-        },
-        {
-            type: "textarea",
-
-            id: "pdwkpo",
-        },
-    ],
-    updateRequestContent: (updatedContent) =>
-        set(() => ({ content: updatedContent })),
-    addRequestItem: (newItem) =>
-        set(({ content }) => ({ content: [...content, newItem] })),
-}));
+    })),
+);

@@ -13,7 +13,7 @@ export default function CreateRequest() {
     const [showAddItemBox, setShowAddItemBox] = useState(false);
 
     return (
-        <div className="flex w-full flex-col gap-10">
+        <div className="flex w-full flex-col gap-4">
             <div>
                 <CreateRequestHeader />
                 <SortableList />

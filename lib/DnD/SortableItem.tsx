@@ -1,4 +1,5 @@
 import { RequestItem } from "@/app/create-request/types";
+import { RequestSlider } from "@/components/RequestCreation/RequestSlider";
 import { RequestTextArea } from "@/components/RequestCreation/RequestTextArea";
 import { Slider } from "@/components/ui/slider";
 import { useSortable, verticalListSortingStrategy } from "@dnd-kit/sortable";
@@ -49,7 +50,7 @@ export const SortableItem = ({ item }: Props) => {
 
             <div className="flex w-full flex-col justify-start gap-10">
                 {type === "textarea" && <RequestTextArea requestItem={item} />}
-                {type === "slider" && <Slider className="my-2" />}
+                {type === "slider" && <RequestSlider />}
             </div>
         </div>
     );

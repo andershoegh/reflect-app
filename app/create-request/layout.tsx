@@ -6,7 +6,7 @@ export default function CreateRequestLayout({
     children: ReactNode;
 }) {
     return (
-        <section className="my-6 flex w-full max-w-2xl justify-center">
+        <section className="my-6 flex w-full max-w-2xl justify-center bg-background">
             {children}
         </section>
     );

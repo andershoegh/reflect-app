@@ -18,10 +18,13 @@ import { useId } from "react";
 import { SortableItem } from "./SortableItem";
 import { RequestItem } from "@/app/create-request/types";
 import { useCreateRequestStore } from "@/app/create-request/useCreateRequestStore";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Info } from "lucide-react";
 
 const SortableList = () => {
     const { updateRequestContent, content: requestContent } =
         useCreateRequestStore();
+
     const id = useId();
 
     const sensors = useSensors(
@@ -53,6 +56,21 @@ const SortableList = () => {
         }
     };
 
+    if (requestContent.length === 0)
+        return (
+            <div className="mx-4 mt-2">
+                <Alert>
+                    <Info className="h-4 w-4" />
+                    <AlertTitle>
+                        Add content to your feedback request
+                    </AlertTitle>
+                    <AlertDescription className="mt-1">
+                        Your feedback request has no items in it yet. Add them
+                        by clicking below or by using the ⌘K command.
+                    </AlertDescription>
+                </Alert>
+            </div>
+        );
     return (
         <div className="">
             <DndContext

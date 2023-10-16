@@ -6,7 +6,7 @@ import {
     CommandItem,
     CommandList,
 } from "@/components/ui/command";
-import { Text } from "lucide-react";
+import { SlidersHorizontal, Text } from "lucide-react";
 import { useEffect } from "react";
 import { RequestItem } from "./types";
 
@@ -44,10 +44,10 @@ export const AddItemCommandBox = ({ addRequestItem, open, setOpen }: Props) => {
                 <CommandEmpty>No components found</CommandEmpty>
                 <CommandItem onSelect={() => handleSelect("textarea")}>
                     <Text className="mr-2 h-4 w-4" />
-                    <span>Text area</span>
+                    <span>Text field</span>
                 </CommandItem>
                 <CommandItem onSelect={() => handleSelect("slider")}>
-                    <Text className="mr-2 h-4 w-4" />
+                    <SlidersHorizontal className="mr-2 h-4 w-4" />
                     <span>Slider</span>
                 </CommandItem>
             </CommandList>
